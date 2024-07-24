@@ -1,19 +1,18 @@
 import pandas as pd 
 
-df = pd.read_csv("./assets/spreadsheets/dados_bruto.csv" )
-print(df.shape[0],df.shape[1])
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from src.utils import textCorrector, textColor, numero_de_colunas
-from src.utils import ler_planilha
 
 planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambiente
 pdf_pages = PdfPages("./output/pdf/Distribuição de Alternativas.pdf")  # Cria um objeto PDF
 
 df = pd.read_csv(planilhabruta)
-print(df.shape[0],df.shape[1])
-def gerar_grafico_distruibuicao(colunas,n_linhas,prova):
+def gerar_grafico_distruibuicao(prova):
+    print("Criando gráfico para distruibuição de acertos de cada questão...")
+    n_linhas = df.shape[1]
     data_per = {}
     total_de_colunas = numero_de_colunas[prova]
     fig_count = 0
@@ -25,13 +24,11 @@ def gerar_grafico_distruibuicao(colunas,n_linhas,prova):
         e = 0
         acertaram = 0
         erraram = 0
-        print(f"QUESTAO: {coluna-1}")
-        for linha in range(3,99g):
+        for linha in range(3,99 ):
             colunaG = coluna - 3
             disciplina = df.iloc[2, coluna]
             gabaritoC = df.iloc[0,coluna]
             resposta_aluno = df.iloc[linha, coluna]
-            print(f"aluno: {resposta_aluno} | gabarito: {gabaritoC}")
             if resposta_aluno == 'NAO DETECTADO':
                 continue
             if resposta_aluno == "A":
@@ -48,8 +45,6 @@ def gerar_grafico_distruibuicao(colunas,n_linhas,prova):
                 acertaram += 1
             else:
                 erraram += 1
-        print()
-
         total_respostas = acertaram + erraram
         acertaram = (acertaram / total_respostas) * 100
         erraram = (erraram / total_respostas) * 100
@@ -69,9 +64,6 @@ def gerar_grafico_distruibuicao(colunas,n_linhas,prova):
             f'D|{d}': d,
             f'E|{e}': e,
         }
-
-        print(f'Questão:{coluna-2} Disciplina:{disciplina} Gabarito: {gabaritoC}\n A: {a}\n B: {b}\n C: {c}\n D: {d}\n E: {e} ')
-        print(erraram, acertaram)
         courses = list(data.keys())
         values = list(data.values())
         
@@ -103,7 +95,5 @@ def gerar_grafico_distruibuicao(colunas,n_linhas,prova):
         plt.close(fig)
 
     pdf_pages.close()
-
-#createpdf.tableNotes(data_per)
+    print("Gráficos criados com sucesso!")
 #print(df.iloc[linha,coluna])
-print(df.iloc[2,2])
