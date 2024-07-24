@@ -1,5 +1,16 @@
 import pandas as pd
 import json
+media_disciplinas_turma = {
+    'total_acertos': 0,
+    'matematica':0,
+    "portugues":0,
+    "quimica":0,
+    "historia":0,
+    "geografia":0,
+    "fisica":0,
+    "biologia":0,
+    "filosofia-sociologia":0
+}
 ranking_alunos = {}
 planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambienteglobal df
 df = pd.read_csv(planilhabruta)
@@ -28,9 +39,20 @@ def corrigir():
             if valor_binario=="1":
                 aluno_status['total_acertos']+=1
                 disciplina = df.iloc[2,coluna]
-                aluno_status[disciplina]+=1
-                
+                aluno_status[disciplina]+=1              
         ranking_alunos[aluno] = aluno_status
+
+    for aluno in ranking_alunos:
+            aluno_pontuacao = ranking_alunos[aluno]
+            for materia in aluno_pontuacao:
+                pontuacao = aluno_pontuacao[materia]
+                media_disciplinas_turma[materia] = (media_disciplinas_turma[materia] + pontuacao)
+
+    for item in media_disciplinas_turma:
+        media = media_disciplinas_turma[item]/(linhas-3)
+        media = round(media,1)
+        media_disciplinas_turma[item] = media
+
     ranking_alunos_ordenado = dict(sorted(ranking_alunos.items(), key=lambda item: item[1]['total_acertos'], reverse=True))
     
     df = pd.DataFrame.from_dict(ranking_alunos_ordenado, orient='index')
@@ -45,4 +67,7 @@ def corrigir():
     
     with open('./output/json/ranking_alunos.json', 'w') as f:
         json.dump(ranking_alunos, f, indent=4, default=str)
+    
+    with open('./output/json/media_disciplinas.json', 'w') as f:
+        json.dump(media_disciplinas_turma, f, indent=4, default=str)
 corrigir()
