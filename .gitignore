@@ -2,9 +2,13 @@
 __pycache__/
 *.py[cod]
 *$py.class
-environment
 
-# C extensions
+assets/spreadsheets/*
+output/json/*
+output/pdf/*
+output/spreadsheets/*
+
+# C extensionss
 *.so
 
 # Distribution / packaging
@@ -123,7 +127,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.environment
 .venv
 env/
 venv/
