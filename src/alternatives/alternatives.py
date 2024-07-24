@@ -24,8 +24,7 @@ def gerar_grafico_distruibuicao(prova):
         e = 0
         acertaram = 0
         erraram = 0
-        for linha in range(3,99 ):
-            colunaG = coluna - 3
+        for linha in range(3,n_linhas-4):
             disciplina = df.iloc[2, coluna]
             gabaritoC = df.iloc[0,coluna]
             resposta_aluno = df.iloc[linha, coluna]
@@ -76,7 +75,7 @@ def gerar_grafico_distruibuicao(prova):
         axs[fig_count].bar(courses, values, color=textColor[disciplina], width=0.4)
         axs[fig_count].set_xlabel(f"Resposta correta: {gabaritoC}", fontsize=11)
         axs[fig_count].set_ylabel(f"Quantidade de vezes assinalada", fontsize=10)
-        axs[fig_count].set_title(f"Questão: {coluna-2} Disciplina: {textCorrector[disciplina]}", fontsize=11)
+        axs[fig_count].set_title(f"Questão: {coluna-1} Disciplina: {textCorrector[disciplina]}", fontsize=11)
         if gabaritoC != 'Anulada':
             axs[fig_count].text(0.52, 1.06, f" Erraram: {erraram}% | Acertaram: {acertaram}% ", ha='center', transform=axs[fig_count].transAxes, fontsize=11)
 
