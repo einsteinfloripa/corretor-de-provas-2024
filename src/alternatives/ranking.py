@@ -15,7 +15,7 @@ ranking_alunos = {}
 planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambienteglobal df
 df = pd.read_csv(planilhabruta)
 
-def corrigir():
+def gerar_ranking():
     df = pd.read_csv(planilhabruta)
     linhas = df.shape[0]
     colunas = df.shape[1]
@@ -70,4 +70,4 @@ def corrigir():
     
     with open('./output/json/media_disciplinas.json', 'w') as f:
         json.dump(media_disciplinas_turma, f, indent=4, default=str)
-corrigir()
+gerar_ranking()
