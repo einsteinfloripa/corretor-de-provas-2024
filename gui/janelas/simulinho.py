@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel
+from PyQt5 import QtGui
+from utiils import configurar_label_com_imagem
 class SimulinhoJanela(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -55,6 +57,12 @@ class SimulinhoJanela(QMainWindow):
             QLabel {font-size:32px;font-family:Cyrillic}
             
             ''')
+
+
+        self.icon = QLabel(self)
+        configurar_label_com_imagem(self.icon, "./assets/icons/einsteinlogo.png", 100, 100, 30, 470)
+    
+        self.CarregarJanela()
 
 
     def CarregarJanela(self):

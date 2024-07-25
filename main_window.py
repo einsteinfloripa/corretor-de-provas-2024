@@ -120,6 +120,9 @@ class Janela(QMainWindow):
             }
         ''')
 
+        self.icon = QLabel(self)
+        configurar_label_com_imagem(self.icon, "./assets/icons/einsteinlogo.png", 100, 100, 30, 470)
+        
         self.CarregarJanela()
 
     def CarregarJanela(self):
