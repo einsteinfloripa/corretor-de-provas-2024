@@ -1,7 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QToolTip
-from src.alternatives.ranking import gerar_ranking
-
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel
 
 class SimulinhoJanela(QMainWindow):
     def __init__(self):
@@ -14,8 +11,8 @@ class SimulinhoJanela(QMainWindow):
         self.titulo = "Corretor de Simulados"
 
         botaoGerarVariaveis = QPushButton("GerarVariaveis", self)
-        botaoGerarVariaveis.move(250,150) #posicao do botao = x,y
-        botaoGerarVariaveis.resize(300,100) #largura, altura
+        botaoGerarVariaveis.move(70,450)
+        botaoGerarVariaveis.resize(300,100)
         botaoGerarVariaveis.setStyleSheet('''
             QPushButton {
                 background-color: #362500;
@@ -30,11 +27,12 @@ class SimulinhoJanela(QMainWindow):
                 background-color: #f6f7fa;
             }
         ''')
-        #botaoGerarVariaveis.clicked.connect(self.Simulinho)
+        # Conectar o botão ao método desejado
+        # botaoGerarVariaveis.clicked.connect(self.Simulinho)
 
         botaoGerarResultados = QPushButton("GerarResultados", self)
-        botaoGerarResultados.move(250,280) #posicao do botao = x,y
-        botaoGerarResultados.resize(300,100) #largura, altura
+        botaoGerarResultados.move(400,450)
+        botaoGerarResultados.resize(300,100)
         botaoGerarResultados.setStyleSheet('''
             QPushButton {
                 background-color: #493b72;
@@ -50,12 +48,18 @@ class SimulinhoJanela(QMainWindow):
             }
         ''')
 
+        tituloTopo = QLabel(self)
+        tituloTopo.setText("Simulinho")
+        tituloTopo.setGeometry(300, 20, 450, 100)  # Ajusta o tamanho e a posição do QLabel
+        tituloTopo.setStyleSheet(
+            '''
+            QLabel {font:bold;font-size:40px}
+            
+            ''')
+
+        self.CarregarJanela()
 
     def CarregarJanela(self):
         self.setGeometry(self.lado, self.topo, self.largura, self.altura)
         self.setWindowTitle(self.titulo)
         self.show()
-
-
-simulinho = SimulinhoJanela()
-sys.exit(aplicacao.exec_())
