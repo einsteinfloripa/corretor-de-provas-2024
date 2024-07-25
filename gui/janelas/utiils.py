@@ -95,4 +95,34 @@ tituloTopoStyle = '''
                 font-size: 32px;      
                 background-color: transparent;
             }
+        '''
+
+botaoGerarVariaveisStyle = '''
+            QPushButton {
+                background-color: #362500;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size: 20px;
+            }
+            QPushButton:hover {
+                background-color: #5a4d3d;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+botaoGerarResultadosStyle = '''
+            QPushButton {
+                background-color: #493b72;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size: 20px;
+            }
+            QPushButton:hover {
+                background-color: #5a4d3d;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
         ''' 
