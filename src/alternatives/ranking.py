@@ -12,8 +12,8 @@ media_disciplinas_turma = {
     "filosofia-sociologia":0
 }
 ranking_alunos = {}
-planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambienteglobal df
-df = pd.read_csv(planilhabruta)
+
+planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambiente
 
 def gerar_ranking():
     df = pd.read_csv(planilhabruta)
