@@ -1,3 +1,4 @@
+import pandas as pd
 textColor = {
     'matematica': 'green',
     'portugues': '#B8AA5E',
@@ -36,3 +37,9 @@ textCorrector = {
     'interdisciplinar': 'Interdisciplinar',
     'filosofia-sociologia': 'Filosofia-Sociologia'  
 }
+
+numero_de_colunas = {
+    "simulinho" :52
+}
+
+
