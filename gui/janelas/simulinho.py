@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel
 from PyQt5 import QtGui
-from utiils import configurar_label_com_imagem
+from .utiils import configurar_label_com_imagem
 class SimulinhoJanela(QMainWindow):
     def __init__(self):
         super().__init__()
