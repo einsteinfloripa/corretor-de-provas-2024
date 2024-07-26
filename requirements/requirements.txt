@@ -25,6 +25,8 @@ pandas==2.2.2
     # via -r ./requirements/requirements.in
 pillow==10.4.0
     # via matplotlib
+plyer==2.1.0
+    # via -r ./requirements/requirements.in
 pyparsing==3.1.2
     # via matplotlib
 pyqt5==5.15.11
