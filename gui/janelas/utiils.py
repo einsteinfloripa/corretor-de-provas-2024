@@ -97,11 +97,24 @@ tituloTopoStyle = '''
             }
         '''
 
+dadosBrutosArquivoStyle = '''
+        QLabel {
+                text-align:center;
+                font-family:"Cyrillic";   
+                font-size:15px;
+                color:black;  
+                background-color:#239B56 ;
+                border-radius:6px;
+            }
+
+'''
+
+
 botaoGerarVariaveisStyle = '''
             QPushButton {
                 background-color: #362500;
                 border-radius: 6px;
-                color: #e7e6e3;
+                color #e7e6e3;
                 font-size: 20px;
             }
             QPushButton:hover {
@@ -126,3 +139,49 @@ botaoGerarResultadosStyle = '''
                 background-color: #f6f7fa;
             }
         ''' 
+
+SelecionarDadosBrutosStyle= '''
+            QPushButton {
+                background-color: #00422b;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarInformaçõesStyle = '''
+        QPushButton {
+                background-color: #00422b;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+
+SelecionarCaminhoStyle ='''
+            QPushButton {
+                background-color: #00422b;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #117A65;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
