@@ -1,6 +1,11 @@
 import pandas as pd
 import json
-media_disciplinas_turma = {
+def main():
+    gerar_ranking()
+
+def gerar_ranking():
+    print("Gerando Ranking...")
+    media_disciplinas_turma = {
     'total_acertos': 0,
     'matematica':0,
     "portugues":0,
@@ -10,12 +15,10 @@ media_disciplinas_turma = {
     "fisica":0,
     "biologia":0,
     "filosofia-sociologia":0
-}
-ranking_alunos = {}
+    }
+    ranking_alunos = {}
 
-planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambiente
-
-def gerar_ranking():
+    planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambiente
     df = pd.read_csv(planilhabruta)
     linhas = df.shape[0]
     colunas = df.shape[1]
@@ -70,4 +73,6 @@ def gerar_ranking():
     
     with open('./output/json/media_disciplinas.json', 'w') as f:
         json.dump(media_disciplinas_turma, f, indent=4, default=str)
-gerar_ranking()
+
+if __name__ == "__main__":
+    main()
