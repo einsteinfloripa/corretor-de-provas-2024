@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QFileDialog
 from PyQt5 import QtGui
 from .utiils import configurar_label_com_imagem, botaoGerarVariaveisStyle, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosStyle, SelecionarInformaçõesStyle, SelecionarCaminhoStyle
+from src.alternatives.alternatives import gerar_grafico_distruibuicao
+
 class SimulinhoJanela(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -19,7 +21,8 @@ class SimulinhoJanela(QMainWindow):
         botaoGerarVariaveis.move(170,450)
         botaoGerarVariaveis.resize(200,60)
         botaoGerarVariaveis.setStyleSheet(botaoGerarVariaveisStyle)
-        #botaoGerarVariaveis.clicked.connect()
+        botaoGerarVariaveis.clicked.connect(lambda:gerar_grafico_distruibuicao("simulinho",self.CaminhosDeArquivos["dados_brutos"],self.CaminhosDeArquivos["salvar_arquivos"]))
+        botaoGerarVariaveis.clicked.connect(self.textoDeStatus)
 
         botaoGerarResultados = QPushButton("GerarResultados", self)
         botaoGerarResultados.move(450,450)
@@ -56,7 +59,7 @@ class SimulinhoJanela(QMainWindow):
         self.SelecionarCaminho.move(290,350)
         self.SelecionarCaminho.resize(200,65)
         self.SelecionarCaminho.setStyleSheet(SelecionarCaminhoStyle)
-        self.SelecionarCaminho.clicked.connect(self.open_file_dialog)
+        self.SelecionarCaminho.clicked.connect(self.openDirectory)
 
         self.CarregarJanela()
 
@@ -77,5 +80,22 @@ class SimulinhoJanela(QMainWindow):
             print(self.CaminhosDeArquivos)
         else:
             self.SelecionarDadosBrutos.setText("Nenhum arquivo selecionado")
+    
+    def openDirectory(self):
+        options = QFileDialog.Options()
+        folder = QFileDialog.getExistingDirectory(self, "Selecione o Diretório", "", options=options)
+        button = self.sender()
+        if folder:
+            self.CaminhosDeArquivos[button.objectName()] = folder
+            button.setText(f"Arquivo selecionado: {folder}")
+            print(f"Diretório selecionado: {folder}")
+            # Aqui você pode adicionar lógica para salvar o caminho selecionado para uso futuro
+
+    
+    def textoDeStatus(self):
+        textoDeStatus = QLabel(self)
+        textoDeStatus.setText("Variaveis Criadas!")
+        textoDeStatus.setGeometry(220, 450, 450, 100)  # x,y,width, height
+        textoDeStatus.setStyleSheet(tituloTopoStyle)
 
 
