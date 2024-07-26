@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QFileDialog
 from PyQt5 import QtGui
-from .utiils import configurar_label_com_imagem, botaoGerarVariaveisStyle, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosStyle, SelecionarInformaçõesStyle, SelecionarCaminhoStyle
+from .utiils import configurar_label_com_imagem, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosStyle, SelecionarInformaçõesStyle, SelecionarCaminhoStyle
 from src.alternatives.alternatives import gerar_grafico_distruibuicao
 
 class SimulinhoJanela(QMainWindow):
@@ -20,7 +20,7 @@ class SimulinhoJanela(QMainWindow):
         botaoGerarVariaveis = QPushButton("GerarVariaveis", self)
         botaoGerarVariaveis.move(170,450)
         botaoGerarVariaveis.resize(200,60)
-        botaoGerarVariaveis.setStyleSheet(botaoGerarVariaveisStyle)
+        botaoGerarVariaveis.setStyleSheet(botaoGerarResultadosStyle)
         botaoGerarVariaveis.clicked.connect(lambda:gerar_grafico_distruibuicao("simulinho",self.CaminhosDeArquivos["dados_brutos"],self.CaminhosDeArquivos["salvar_arquivos"]))
         botaoGerarVariaveis.clicked.connect(self.textoDeStatus)
 
