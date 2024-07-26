@@ -6,8 +6,6 @@ from PyQt5.QtGui import QPixmap, QImageReader
 from PyQt5.QtCore import Qt
 from gui.janelas.utiils import configurar_label_com_imagem, EnemBotaoStyle, UfscBotaoStyle, SimulinhoBotaoStyle, UdescBotaoStyle, PsBotaoStyle, tituloTopoStyle
 
-    
-
 class Janela(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -25,23 +23,23 @@ class Janela(QMainWindow):
         botaoSimulinho.clicked.connect(self.abrir_simulinho)
 
         botaoEnem = QPushButton("Enem", self)
-        botaoEnem.move(290,220) #posicao do botao = x,y
-        botaoEnem.resize(200,60) #largura, altura
+        botaoEnem.move(290,220) 
+        botaoEnem.resize(200,60) 
         botaoEnem.setStyleSheet(EnemBotaoStyle)
 
         botaoUfsc = QPushButton("Ufsc", self)
-        botaoUfsc.move(290,290) #posicao do botao = x,y
-        botaoUfsc.resize(200,60) #largura, altura
+        botaoUfsc.move(290,290) 
+        botaoUfsc.resize(200,60) 
         botaoUfsc.setStyleSheet(UfscBotaoStyle)
 
         botaoUdesc = QPushButton("Udesc", self)
-        botaoUdesc.move(290,360) #posicao do botao = x,y
-        botaoUdesc.resize(200,60) #largura, altura
+        botaoUdesc.move(290,360) 
+        botaoUdesc.resize(200,60) 
         botaoUdesc.setStyleSheet(UdescBotaoStyle)
 
         botaoPs = QPushButton("Ps", self)
-        botaoPs.move(290,430) #posicao do botao = x,y
-        botaoPs.resize(200,60) #largura, altura
+        botaoPs.move(290,430) 
+        botaoPs.resize(200,60) 
         botaoPs.setStyleSheet(PsBotaoStyle)
 
         tituloTopo = QLabel(self)
