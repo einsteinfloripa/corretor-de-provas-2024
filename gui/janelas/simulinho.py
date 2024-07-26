@@ -10,7 +10,11 @@ class SimulinhoJanela(QMainWindow):
         self.largura = 800
         self.altura = 600
         self.titulo = "Corretor de Simulados"
-
+        self.CaminhosDeArquivos = {
+            "dados_brutos" : "",
+            "infos_alunos":"",
+            "salvar_arquivos":""
+        }
         botaoGerarVariaveis = QPushButton("GerarVariaveis", self)
         botaoGerarVariaveis.move(170,450)
         botaoGerarVariaveis.resize(200,60)
@@ -34,18 +38,21 @@ class SimulinhoJanela(QMainWindow):
 
         # Criação do QPushButton
         self.SelecionarDadosBrutos = QPushButton("Selecionar dados brutos", self)
+        self.SelecionarDadosBrutos.setObjectName("dados_brutos")
         self.SelecionarDadosBrutos.move(290,150)
         self.SelecionarDadosBrutos.resize(200,65)
         self.SelecionarDadosBrutos.setStyleSheet(SelecionarDadosBrutosStyle)
         self.SelecionarDadosBrutos.clicked.connect(self.open_file_dialog)
 
         self.SelecionarInformações = QPushButton("Selecionar infos alunos", self)
+        self.SelecionarInformações.setObjectName("infos_alunos")
         self.SelecionarInformações.move(290,250)
         self.SelecionarInformações.resize(200,65)
         self.SelecionarInformações.setStyleSheet(SelecionarInformaçõesStyle)
         self.SelecionarInformações.clicked.connect(self.open_file_dialog)
 
         self.SelecionarCaminho = QPushButton("Caminho dos arquivos", self)
+        self.SelecionarCaminho.setObjectName("salvar_arquivos")
         self.SelecionarCaminho.move(290,350)
         self.SelecionarCaminho.resize(200,65)
         self.SelecionarCaminho.setStyleSheet(SelecionarCaminhoStyle)
@@ -65,7 +72,9 @@ class SimulinhoJanela(QMainWindow):
         button = self.sender()
         print(file_name)
         if file_name:
+            self.CaminhosDeArquivos[button.objectName()] = file_name
             button.setText(f"Arquivo selecionado: {file_name}")
+            print(self.CaminhosDeArquivos)
         else:
             self.SelecionarDadosBrutos.setText("Nenhum arquivo selecionado")
 
