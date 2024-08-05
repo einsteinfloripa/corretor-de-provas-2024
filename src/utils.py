@@ -42,4 +42,15 @@ numero_de_colunas = {
     "simulinho" :52
 }
 
+def convert_to_int(string):
+    if isinstance(string,str):
+            if string== "0" or string=="-" or string=="--":
+                string = 0
+            elif string[0] == "0" and len(string)>1:
+                string = string[1::]
+                string = int(string)
+            else:
+                string = int(string)
+    return string
+
 
