@@ -8,6 +8,7 @@ output/json/*
 output/pdf/*
 output/spreadsheets/*
 teste.py
+jsonteste.json
 # C extensionss
 *.so
 
