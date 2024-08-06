@@ -1,9 +1,14 @@
 import json
 import pandas as pd
-from time import sleep
+
 
 from ..utils import convert_to_int
 
+converter_texto = {
+    "InglÃªs": "Inglês",
+    "Ingles": "Inglês",
+    "Espanhol":"Espanhol"
+}
 def calcular_parciais_ufsc():
     json_path = "./output/json/proposicoes_assinaladas_ufsc.json"
     gabarito_path = "./assets/spreadsheets/Vale - gabarito simufsc I 2024 - Página1.csv"
@@ -24,14 +29,9 @@ def calcular_parciais_ufsc():
                 valor = 2**((numero*-1)-1)
                 respostas.append(valor)
         incorretas = 0
-        print("respostas do aluno:",respostas)
-        print("proposições corretas: ",props_correta)
         for resposta in respostas:
-            print(f"resposta atual: {resposta} condicao: {resposta not in props_correta}")
             if resposta not in props_correta:
                 incorretas+=1
-        print("proposicoes incorretas consideradas pelo aluno",incorretas)
-        print()
         return incorretas
 
     for estudante in dados:
@@ -39,27 +39,47 @@ def calcular_parciais_ufsc():
         estudante_nome = dados[estudante]["nome"]
         parcial_questoes[estudante] = {
             "nome":estudante_nome,
-            "parcial_aluno":{} 
+            "parcial_aluno":{
+                "Português/Literatura":{},
+                "Matemática":{},
+                "Biologia":{},
+                "História":{},
+                "Geografia":{},
+                "Filosofia/Sociologia":{},
+                "Física":{},
+                "Química":{},
+                "linguagens":{}
+            } 
         }
+        pontos_disciplina = {}
 
         for index,row in gabarito_df.iterrows():
             index_string = str(index+1) #index comeca em 0, então tem que somar 1
             lista_de_props_corretas = row["Lista de corretas"].replace(" ", "").split(",")
             disciplina = row["Disciplina"]
+            
             total_de_proposições = row["Total de proposições"]
             proposições_corretas = row["Proposições corretas"]
+            
+            if disciplina == "Inglês":
+                linguagem = dados[estudante]["lingua"]
+                linguagem = converter_texto[linguagem]
+                if linguagem == "Espanhol":
+                    total_de_proposições = row["Total de proposições espanhol"]
+                    proposições_corretas = row["Proposições corretas espanhol"]
             aluno_props_binario = estudante_respostas[index_string]
             aluno_total_props = int(aluno_props_binario.count("1"))
             npi = aluno_props_lista(aluno_props_binario,lista_de_props_corretas)
-            #print(f"aluno_total_props: {aluno_total_props},npi: {npi}")
             if aluno_total_props > npi:
                 pontuacao_questao = ((total_de_proposições - (proposições_corretas - (aluno_total_props - npi)))/total_de_proposições)
             else:
                 pontuacao_questao = 0
-            parcial_questoes[estudante]["parcial_aluno"][index_string] = round(pontuacao_questao,2)
+            if disciplina=="Inglês" or disciplina=="Espanhol":
+                disciplina = "linguagens"
+            parcial_questoes[estudante]["parcial_aluno"][disciplina][index_string] = round(pontuacao_questao,2)
 
-    with open('./output/json/parcias_ufsc.json', 'w') as f:
-        json.dump(parcial_questoes, f, indent=4, default=str)
+    with open('./output/json/parcias_ufsc.json', 'w', encoding="utf-8") as f:
+        json.dump(parcial_questoes, f, indent=4, default=str, ensure_ascii=False)
     
 
 """
