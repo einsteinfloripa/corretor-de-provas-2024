@@ -20,10 +20,14 @@ def calcular_media_acertos(json_path):
     
     #Calcular a média de acertos para cada disciplina
     medias_acertos = {}
+    media_prova = 0
     for disciplina in soma_acertos:
+        media_prova = round(((soma_acertos[disciplina] / qtd_alunos) + media_prova),2)
         medias_acertos[disciplina] = f"{round(soma_acertos[disciplina] / qtd_alunos,2)}/{len(disciplinas[disciplina])}"
-
     
+    medias_acertos["Media de acertos"] = media_prova
+    
+
     with open('./output/json/media_disciplinas_ufsc.json', 'w', encoding='utf-8') as f:
         json.dump(medias_acertos, f, indent=4, default=str, ensure_ascii=False)
 
