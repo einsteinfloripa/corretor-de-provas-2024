@@ -38,7 +38,7 @@ def calcular_ranking(json_path):
     df = pd.DataFrame(data_list)
 
     # Salvar o DataFrame em uma planilha Excel
-    df.to_excel('testeeeeeeeeeee.xlsx', index=False, engine='openpyxl')
+    df.to_excel('./output/spreadsheets/ranking_de_notas.xlsx', index=False, engine='openpyxl')
     
 json_path = "output/json/parcias_ufsc.json"
 calcular_ranking(json_path)    
