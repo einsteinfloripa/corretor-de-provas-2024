@@ -1,6 +1,6 @@
 import json
 def calcular_media_acertos(json_path):
-    with open(json_path, 'r') as arquivo:
+    with open(json_path, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
     # Inicializar um dicionário para armazenar a soma das notas e a quantidade de alunos por disciplina
     soma_acertos = {}
