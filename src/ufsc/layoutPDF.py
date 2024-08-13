@@ -21,6 +21,7 @@ def create_report(data, filename):
     student_info = [
         ["Nome", data['name']],
         ["CPF", data['cpf']],
+        ["Linguagem",data["idioma_aluno"]]
     ]
     
     table = Table(student_info, colWidths=[100, 400])
@@ -56,7 +57,7 @@ def create_report(data, filename):
     elements.append(table)
     
     # Resultado por questão
-    question_results = [["Questão", "Gabarito", "Você", "Pontuação Obtida"]] + data['questions']
+    question_results = [["Questão", "Gabarito", "Você", "Parcial"]] + data['questions']
     
     # Ajustando a largura das colunas
     colWidths = [50, 50, 50, 50]  # Atualize a largura das colunas se necessário
