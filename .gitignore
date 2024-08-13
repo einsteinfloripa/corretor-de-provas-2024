@@ -5,6 +5,7 @@ __pycache__/
 
 assets/spreadsheets/*
 output/json/*
+output/alunos_relatorios/*
 output/pdf/*
 output/spreadsheets/*
 teste.py
