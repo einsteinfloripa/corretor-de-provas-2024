@@ -3,9 +3,9 @@ import pandas as pd
 
 def calcular_ranking(json_path):
     total_por_disciplina = {}
-    with open(json_path, 'r') as arquivo:
+    with open(json_path, 'r',encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
-
+    print(dados)
     for estudante in dados:
         nome = dados[estudante]["nome"]
         total_por_disciplina[estudante] = {"nome":nome}
@@ -24,7 +24,6 @@ def calcular_ranking(json_path):
         
         total_por_disciplina[estudante]["pontuacão_total"]["total_prova"] = f"{round(total_de_acertos_prova,2)}/40" #total de questoes da ufsc
 
-    print(total_por_disciplina)
     dados_ordenados = sorted(total_por_disciplina.items(), key=lambda x: float(x[1]['pontuacão_total']['total_prova'].split('/')[0]), reverse=True)
 
     with open('./output/json/total por disciplina ufsc.json', 'w', encoding="utf-8") as f:
@@ -38,7 +37,7 @@ def calcular_ranking(json_path):
     df = pd.DataFrame(data_list)
 
     # Salvar o DataFrame em uma planilha Excel
-    df.to_excel('./output/spreadsheets/ranking_de_notas.xlsx', index=False, engine='openpyxl')
+    df.to_csv('./output/spreadsheets/ranking_de_notas.csv', index=False)
     
-json_path = "output/json/parcias_ufsc.json"
+json_path = "./output/json/parcias_ufsc.json"
 calcular_ranking(json_path)    
