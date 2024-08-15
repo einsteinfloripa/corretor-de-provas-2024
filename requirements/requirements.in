@@ -1,4 +1,6 @@
-pandas==2.2.2
-matplotlib
+pandas
+
 pyqt5
 plyer
+openpyxl
+matplotlib
