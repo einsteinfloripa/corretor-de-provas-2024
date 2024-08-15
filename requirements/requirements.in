@@ -1,6 +1,7 @@
 pandas
-
+PyQt5
 pyqt5
 plyer
 openpyxl
 matplotlib
+reportlab

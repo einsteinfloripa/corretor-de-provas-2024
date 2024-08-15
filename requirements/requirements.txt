@@ -4,6 +4,8 @@
 #
 #    pip-compile ./requirements/requirements.in
 #
+chardet==5.2.0
+    # via reportlab
 contourpy==1.2.1
     # via matplotlib
 cycler==0.12.1
@@ -28,7 +30,9 @@ packaging==24.1
 pandas==2.2.2
     # via -r ./requirements/requirements.in
 pillow==10.4.0
-    # via matplotlib
+    # via
+    #   matplotlib
+    #   reportlab
 plyer==2.1.0
     # via -r ./requirements/requirements.in
 pyparsing==3.1.2
@@ -45,6 +49,8 @@ python-dateutil==2.9.0.post0
     #   pandas
 pytz==2024.1
     # via pandas
+reportlab==4.2.2
+    # via -r ./requirements/requirements.in
 six==1.16.0
     # via python-dateutil
 tzdata==2024.1
