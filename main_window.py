@@ -78,6 +78,10 @@ class Janela(QMainWindow):
     def abrir_simulinho(self):
         self.simulinhoJanela = SimulinhoJanela()
         self.simulinhoJanela.show()
+    
+    def abrir_ufsc(self):
+        self.ufscJanela = UfscJanela()
+        self.ufscJanela.show()
 
 aplicacao = QApplication(sys.argv)
 
