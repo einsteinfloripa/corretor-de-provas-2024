@@ -3,11 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-assets/spreadsheets/*
-output/json/*
-output/alunos_relatorios/*
-output/pdf/*
-output/spreadsheets/*
+assets/spreadsheets/*.csv
+assets/json/*.json
+output/json/*.json
+output/alunos_relatorios/*.pdf
+output/pdf/*.pdf
+output/spreadsheets/*.csv
+output/spreadsheets/*.xlsx
 teste.py
 jsonteste.json
 # C extensionss
