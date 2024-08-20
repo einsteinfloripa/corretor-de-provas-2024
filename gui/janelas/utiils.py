@@ -172,3 +172,92 @@ SelecionarCaminhoStyle ='''
                 background-color: #f6f7fa;
             }
         '''
+
+
+SelecionarDadosBrutosUfscStyle= '''
+            QPushButton {
+                background-color: #ee7867;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarCaminhoUfscStyle= '''
+            QPushButton {
+                background-color: #ee7867;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarValeUfscGabaritoStyle= '''
+            QPushButton {
+                background-color: #ee7867;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarCaminhoUfscStyle= '''
+            QPushButton {
+                background-color: #ee7867;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarInformaçõesUfscStyle = '''
+        QPushButton {
+                background-color: #00422b;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+como_usar_link = "https://docs.google.com/document/d/14yY2QmvND_kaA3LWouWetNRXmbLeKBW7rhUjmy-KXFo/edit?usp=sharing"
+
+como_usar_link_style = "color: #e5e5e5; font-family: 'Cyrillic'; font-size: 16px;"
+
+versão_style = '''
+            QLabel {
+                font-family: "Cyrillic";   
+                font-size: 13px;      
+                background-color: transparent;
+            }
+        '''
+        
