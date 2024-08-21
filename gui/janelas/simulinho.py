@@ -78,8 +78,6 @@ class SimulinhoJanela(QMainWindow):
             self.CaminhosDeArquivos[button.objectName()] = file_name
             button.setText(f"Arquivo selecionado: {file_name}")
             print(self.CaminhosDeArquivos)
-        else:
-            self.SelecionarDadosBrutos.setText("Nenhum arquivo selecionado")
     
     def openDirectory(self):
         options = QFileDialog.Options()
