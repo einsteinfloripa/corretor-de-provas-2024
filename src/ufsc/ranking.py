@@ -2,10 +2,11 @@ import json
 import pandas as pd
 
 def calcular_ranking(json_path):
+    print("------------------------------------------------------------------------")
+    print("Calculando ranking do alunos...")
     total_por_disciplina = {}
     with open(json_path, 'r',encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
-    print(dados)
     for estudante in dados:
         nome = dados[estudante]["nome"]
         total_por_disciplina[estudante] = {"nome":nome}
@@ -38,6 +39,9 @@ def calcular_ranking(json_path):
 
     # Salvar o DataFrame em uma planilha Excel
     df.to_csv('./output/spreadsheets/ranking_de_notas.csv', index=False)
-    
-json_path = "./output/json/parcias_ufsc.json"
-calcular_ranking(json_path)    
+    print("Ranking calculado com sucesso!")
+    print("------------------------------------------------------------------------")
+    print()
+    print()
+if __name__ == "__main__":
+    calcular_ranking("./output/json/parcias_ufsc.json")

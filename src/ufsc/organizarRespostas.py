@@ -1,8 +1,10 @@
 import pandas as pd
 import json
 from ..utils import convert_to_int
-def generate_json_ufsc():
-    df_ufsc = pd.read_csv("./assets/spreadsheets/Cópia de SimuUFSC 2024 - Dados brutos.xlsx - Sheet1.csv", encoding='utf-8')
+def generate_json_ufsc(dados_brutos_path):
+    print("------------------------------------------------------------------------")
+    print("Lendo a planilha de respostas...")
+    df_ufsc = pd.read_csv(dados_brutos_path, encoding='utf-8')
     total_de_linhas = df_ufsc.shape[0]
 
     respostas_brutas_por_aluno = {}
@@ -35,3 +37,11 @@ def generate_json_ufsc():
 
     with open('./output/json/respostas_brutas_ufsc.json', 'w', encoding='utf-8') as f:
         json.dump(respostas_brutas_por_aluno, f, indent=4, default=str, ensure_ascii=False)
+
+    print("Planilha de respostas lida com sucesso!!")
+    print("Arquivos de parciais foram gerados")
+    print("------------------------------------------------------------------------")
+    print()
+    print()
+if __name__ == "__main__":
+    generate_json_ufsc()

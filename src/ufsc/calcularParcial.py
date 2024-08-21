@@ -10,6 +10,8 @@ converter_texto = {
     "Espanhol":"Espanhol"
 }
 def calcular_parciais_ufsc():
+    print("------------------------------------------------------------------------")
+    print("Calculando parciais de acordo com o edital da UFSC...")
     json_path = "./output/json/proposicoes_assinaladas_ufsc.json"
     gabarito_path = "./assets/spreadsheets/Vale - gabarito simufsc I 2024 - Página1.csv"
     parcial_questoes = {}
@@ -80,7 +82,12 @@ def calcular_parciais_ufsc():
 
     with open('./output/json/parcias_ufsc.json', 'w', encoding="utf-8") as f:
         json.dump(parcial_questoes, f, indent=4, default=str, ensure_ascii=False)
-    
+    print("Parciais da UFSC foram calculadas com sucesso.")
+    print("Arquivos gerados com sucesso!!")
+    print("------------------------------------------------------------------------")
+    print()
+    print()
+
 
 """
 parciais feitas de acordo com o edital da prova do vestibular da ufsc de 2023
