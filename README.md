@@ -11,17 +11,15 @@ para auxiliar os organizadores na qualidade do Ensino
 
 ## Primeiros passos
 ### Instalação
-    Clone o projeto com o comando git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
-    Entre dentro da pasta "corretor-de-provas"
+
+Clone o projeto com o comando git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
+
+Entre dentro da pasta "corretor-de-provas"
 
 ### Dependências
 
 * Instale os pacotes de dependências usando:
 ```shell
-$ pip install -r requirements/requirements.txt
+$ pip install -r ./requirements/requirements.txt
 ```
-* Caso você esteja no windons e se deparar com um problema de caminho, utilize o comando:
 
-```shell
-$ pip install -r requirements\requirements.txt
-```
