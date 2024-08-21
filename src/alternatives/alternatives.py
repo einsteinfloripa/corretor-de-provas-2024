@@ -46,7 +46,7 @@ def gerar_grafico_distruibuicao(prova,dados_bruto,caminhoParaSalvar):
             for linha in range(3,n_linhas-4):
                 disciplina = df.iloc[2, coluna]
                 gabaritoC = df.iloc[0,coluna]
-                resposta_aluno = df.iloc[linha, coluna]
+                resposta_aluno = df.iloc[linha, coluna].upper()
                 if resposta_aluno == 'NAO DETECTADO':
                     continue
                 if resposta_aluno == "A":
