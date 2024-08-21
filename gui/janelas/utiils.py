@@ -235,8 +235,23 @@ SelecionarCaminhoUfscStyle= '''
         '''
 
 SelecionarInformaçõesUfscStyle = '''
-        QPushButton {
-                background-color: #00422b;
+            QPushButton {
+                background-color: #ee7867;
+                border-radius: 6px;
+                color: #e7e6e3;
+                font-size:15px;
+            }
+            QPushButton:hover {
+                background-color: #00734a;
+            }
+            QPushButton:pressed {
+                background-color: #f6f7fa;
+            }
+        '''
+
+SelecionarCaminhoUfscRelatórioAlunosStyle = '''
+            QPushButton {
+                background-color: #ee7867;
                 border-radius: 6px;
                 color: #e7e6e3;
                 font-size:15px;
@@ -252,6 +267,8 @@ SelecionarInformaçõesUfscStyle = '''
 como_usar_link = "https://docs.google.com/document/d/14yY2QmvND_kaA3LWouWetNRXmbLeKBW7rhUjmy-KXFo/edit?usp=sharing"
 
 como_usar_link_style = "color: #e5e5e5; font-family: 'Cyrillic'; font-size: 16px;"
+conversor_link = "https://www.convertcsv.com/csv-to-json.htm"
+
 
 versão_style = '''
             QLabel {

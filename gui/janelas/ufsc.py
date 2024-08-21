@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QFileDialog
 from PyQt5 import QtGui
-from .utiils import configurar_label_com_imagem, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosUfscStyle, SelecionarCaminhoUfscStyle, SelecionarCaminhoUfscStyle, SelecionarValeUfscGabaritoStyle, SelecionarInformaçõesUfscStyle
+from .utiils import configurar_label_com_imagem, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosUfscStyle, SelecionarCaminhoUfscStyle, SelecionarCaminhoUfscStyle, SelecionarValeUfscGabaritoStyle, SelecionarInformaçõesUfscStyle, conversor_link, SelecionarCaminhoUfscRelatórioAlunosStyle
 from src.alternatives.alternatives import gerar_grafico_distruibuicao
+from src.invokers.ufsc_invokers import main
 
 class UfscJanela(QMainWindow):
     def __init__(self):
@@ -17,23 +18,28 @@ class UfscJanela(QMainWindow):
             "infos_alunos":"",
             "salvar_arquivos":""
         }
-        # botaoGerarVariaveis = QPushButton("GerarVariaveis", self)
-        # botaoGerarVariaveis.move(170,450)
-        # botaoGerarVariaveis.resize(200,60)
-        # botaoGerarVariaveis.setStyleSheet(botaoGerarResultadosStyle)
-        # botaoGerarVariaveis.clicked.connect(lambda:gerar_grafico_distruibuicao("simulinho",self.CaminhosDeArquivos["dados_brutos"],self.CaminhosDeArquivos["salvar_arquivos"]))
-        # botaoGerarVariaveis.clicked.connect(self.textoDeStatus)
 
         botaoGerarResultados = QPushButton("GerarResultados", self)
-        botaoGerarResultados.move(450,450)
-        botaoGerarResultados.resize(200,60)
+        botaoGerarResultados.move(290,525)
+        botaoGerarResultados.resize(200,65)
         botaoGerarResultados.setStyleSheet(botaoGerarResultadosStyle)
+        botaoGerarResultados.clicked.connect(lambda:main("simulinho",self.CaminhosDeArquivos["dados_brutos"],self.CaminhosDeArquivos["salvar_arquivos"]))
 
         tituloTopo = QLabel(self)
         tituloTopo.setText("UFSC")
         tituloTopo.setGeometry(350, 20, 450, 100)  # x,y,width, height
         tituloTopo.setStyleSheet(tituloTopoStyle)
 
+        conversorLink = QLabel(self)
+        conversor_texto = f'''
+            <a href="{conversor_link}" style="color: #ee7867; font-family: 'Cyrillic'; font-size: 20px;">
+                {"Conversor"}
+            </a>
+        '''
+        conversorLink.setText(conversor_texto)
+        conversorLink.setGeometry(530, 205, 100, 100)  # x,y,width, height
+        conversorLink.setStyleSheet(tituloTopoStyle)
+        conversorLink.setOpenExternalLinks(True)
 
         self.icon = QLabel(self)
         configurar_label_com_imagem(self.icon, "./assets/icons/einsteinlogo.png", 100, 100, 30, 470)
@@ -41,32 +47,39 @@ class UfscJanela(QMainWindow):
 
         # Criação do QPushButton
         self.SelecionarDadosBrutos = QPushButton("Selecionar dados brutos", self)
-        self.SelecionarDadosBrutos.setObjectName("dados_brutos")
-        self.SelecionarDadosBrutos.move(290,150)
+        self.SelecionarDadosBrutos.setObjectName("SelecionarGabaritoVale")
+        self.SelecionarDadosBrutos.move(290,120)
         self.SelecionarDadosBrutos.resize(200,65)
         self.SelecionarDadosBrutos.setStyleSheet(SelecionarDadosBrutosUfscStyle)
         self.SelecionarDadosBrutos.clicked.connect(self.open_file_dialog)
 
+        self.SelecionarGabaritoVale = QPushButton("Selecionar gabarito vale", self)
+        self.SelecionarGabaritoVale.setObjectName("SelecionarGabaritoVale")
+        self.SelecionarGabaritoVale.move(290,220)
+        self.SelecionarGabaritoVale.resize(200,65)
+        self.SelecionarGabaritoVale.setStyleSheet(SelecionarValeUfscGabaritoStyle)
+        self.SelecionarGabaritoVale.clicked.connect(self.open_file_dialog)
+
         self.SelecionarInformações = QPushButton("Selecionar infos alunos", self)
-        self.SelecionarInformações.setObjectName("infos_alunos")
-        self.SelecionarInformações.move(290,250)
+        self.SelecionarInformações.setObjectName("SelecionarInformações")
+        self.SelecionarInformações.move(290,320)
         self.SelecionarInformações.resize(200,65)
         self.SelecionarInformações.setStyleSheet(SelecionarInformaçõesUfscStyle)
         self.SelecionarInformações.clicked.connect(self.open_file_dialog)
 
-        self.SelecionarInformações = QPushButton("Selecionar gabarito vale", self)
-        self.SelecionarInformações.setObjectName("Gabarito vale")
-        self.SelecionarInformações.move(290,250)
-        self.SelecionarInformações.resize(200,65)
-        self.SelecionarInformações.setStyleSheet(SelecionarValeUfscGabaritoStyle)
-        self.SelecionarInformações.clicked.connect(self.open_file_dialog)
-
         self.SelecionarCaminho = QPushButton("Caminho dos arquivos", self)
-        self.SelecionarCaminho.setObjectName("salvar_arquivos")
-        self.SelecionarCaminho.move(290,350)
+        self.SelecionarCaminho.setObjectName("SelecionarCaminho")
+        self.SelecionarCaminho.move(180,420)
         self.SelecionarCaminho.resize(200,65)
         self.SelecionarCaminho.setStyleSheet(SelecionarCaminhoUfscStyle)
         self.SelecionarCaminho.clicked.connect(self.openDirectory)
+
+        self.SelecionarCaminhoRelatórioAlunos = QPushButton("Caminho dos arquivos", self)
+        self.SelecionarCaminhoRelatórioAlunos.setObjectName("SelecionarCaminhoRelatórioAlunos")
+        self.SelecionarCaminhoRelatórioAlunos.move(400,420)
+        self.SelecionarCaminhoRelatórioAlunos.resize(200,65)
+        self.SelecionarCaminhoRelatórioAlunos.setStyleSheet(SelecionarCaminhoUfscRelatórioAlunosStyle)
+        self.SelecionarCaminhoRelatórioAlunos.clicked.connect(self.openDirectory)
 
         self.CarregarJanela()
 
@@ -85,8 +98,7 @@ class UfscJanela(QMainWindow):
             self.CaminhosDeArquivos[button.objectName()] = file_name
             button.setText(f"Arquivo selecionado: {file_name}")
             print(self.CaminhosDeArquivos)
-        else:
-            self.SelecionarDadosBrutos.setText("Nenhum arquivo selecionado")
+
     
     def openDirectory(self):
         options = QFileDialog.Options()
@@ -94,6 +106,8 @@ class UfscJanela(QMainWindow):
         button = self.sender()
         if folder:
             self.CaminhosDeArquivos[button.objectName()] = folder
+            button_name = button.objectName()
+            print(button_name)
             button.setText(f"Arquivo selecionado: {folder}")
             print(f"Diretório selecionado: {folder}")
             # Aqui você pode adicionar lógica para salvar o caminho selecionado para uso futuro
