@@ -11,8 +11,8 @@ para auxiliar os organizadores na qualidade do Ensino
 
 ## Primeiros passos
 ### Instalação
-    Clone o projeto com o comando git clone git@github.com:grodrigues04/Desafio-AWZ.git
-    Entre dentro da pasta "CorretorOFICIAL"
+    Clone o projeto com o comando git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
+    Entre dentro da pasta "corretor-de-provas"
 
 ### Dependências
 
