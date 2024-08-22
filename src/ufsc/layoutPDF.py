@@ -7,8 +7,9 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 
 # Função para criar um relatório PDF
 
-with open("./output/json/media_disciplinas_ufsc.json", 'r') as arquivo:
-    media_geral = json.load(arquivo)
+
+# with open(f"{main_path}/media_disciplinas_ufsc.json", 'r') as arquivo:
+#     media_geral = json.load(arquivo)
 
 def create_report(data, filename):
     pdf = SimpleDocTemplate(filename, pagesize=A4)
