@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from .layoutPDF import create_report
-from .infos import alunos_infos
+# from .infos import alunos_infos
 
 
 
