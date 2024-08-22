@@ -3,27 +3,27 @@ import json
 from .layoutPDF import create_report
 from .infos import alunos_infos
 
-dados_corrigidos = './output/spreadsheets/ranking_de_notas.csv'
-df_acertos_por_disciplina = pd.read_csv(dados_corrigidos, dtype={'CPF': str})
 
 
 
 
 
-def gerar_relatorios_individuais():
+def gerar_relatorios_individuais(main_path, relatorios_alunos_path, gabarito_vale_convertido):
     print("------------------------------------------------------------------------")
     print("Abrindo arquivos gerados para criar os relatórios individuais")
     
-    with open("./output/json/media_disciplinas_ufsc.json", 'r', encoding="utf-8") as arquivo:
+    df_acertos_por_disciplina = pd.read_csv(f"{main_path}/ranking_de_notas.csv", dtype={'CPF': str})
+
+    with open(f"{main_path}/media_disciplinas_ufsc.json", 'r', encoding="utf-8") as arquivo:
         media_geral = json.load(arquivo)
 
-    with open("./output/json/respostas_brutas_ufsc.json", 'r', encoding="utf-8") as arquivo:
+    with open(f"{main_path}/respostas_brutas_ufsc.json", 'r', encoding="utf-8") as arquivo:
         respostas_brutas = json.load(arquivo)
 
-    with open("./assets/json/vale ufsc gabarito.json", 'r', encoding="utf-8") as arquivo:
+    with open(gabarito_vale_convertido, 'r', encoding="utf-8") as arquivo:
         vale_gabarito = json.load(arquivo)
 
-    with open("./output/json/parcias_ufsc.json", 'r', encoding="utf-8") as arquivo:
+    with open(f"{main_path}/parcias_ufsc.json", 'r', encoding="utf-8") as arquivo:
         parciais_ufsc = json.load(arquivo)
 
     print("Gerando relatórios individuais...")
@@ -68,7 +68,7 @@ def gerar_relatorios_individuais():
             tabela.append(questoes)
         data["idioma_aluno"] = idioma_aluno
         data['questions'] = tabela
-        filepdf = f'./output/alunos_relatorios/{cpf_aluno}.pdf'
+        filepdf = f'{relatorios_alunos_path}/{cpf_aluno}.pdf'
         create_report(data,filepdf)
     print("Relatório dos alunos gerados com sucesso!")
     print("------------------------------------------------------------------------")
