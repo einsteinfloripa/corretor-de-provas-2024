@@ -1,6 +1,9 @@
 import sys
+import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
-from src.alternatives.ranking import gerar_ranking
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
 from gui.janelas.simulinho import SimulinhoJanela
 from gui.janelas.ufsc import UfscJanela
 from PyQt5.QtGui import QPixmap
