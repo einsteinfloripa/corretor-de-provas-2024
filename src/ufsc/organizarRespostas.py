@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 from ..utils import convert_to_int
-def generate_json_ufsc(dados_brutos_path):
+def generate_json_ufsc(dados_brutos_path,main_output):
     print("------------------------------------------------------------------------")
     print("Lendo a planilha de respostas...")
     df_ufsc = pd.read_csv(dados_brutos_path, encoding='utf-8')
@@ -32,10 +32,10 @@ def generate_json_ufsc(dados_brutos_path):
             proposicoes_respostas[cpf]["respostas_do_aluno"][questao] = alternativas_assinaladas
             respostas_brutas_por_aluno[cpf]["respostas_do_aluno"][questao] = resposta
 
-    with open('./output/json/proposicoes_assinaladas_ufsc.json', 'w',encoding='utf-8') as f:
+    with open(f'{main_output}/proposicoes_assinaladas_ufsc.json', 'w',encoding='utf-8') as f:
         json.dump(proposicoes_respostas, f, indent=4, default=str, ensure_ascii=False)
 
-    with open('./output/json/respostas_brutas_ufsc.json', 'w', encoding='utf-8') as f:
+    with open(f'{main_output}/respostas_brutas_ufsc.json', 'w', encoding='utf-8') as f:
         json.dump(respostas_brutas_por_aluno, f, indent=4, default=str, ensure_ascii=False)
 
     print("Planilha de respostas lida com sucesso!!")
