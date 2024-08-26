@@ -1,6 +1,6 @@
 import json
 
-def calcular_media_acertos(json_path):
+def calcular_media_acertos(json_path, main_output_path):
     print("------------------------------------------------------------------------")
     print("Calculando média de acertos de cada disciplina...")
     with open(json_path, 'r', encoding='utf-8') as arquivo:
@@ -31,7 +31,7 @@ def calcular_media_acertos(json_path):
     medias_acertos["Media de acertos"] = media_prova
     
 
-    with open('./output/json/media_disciplinas_ufsc.json', 'w', encoding='utf-8') as f:
+    with open(f'{main_output_path}/media_disciplinas_ufsc.json', 'w', encoding='utf-8') as f:
         json.dump(medias_acertos, f, indent=4, default=str, ensure_ascii=False)
     print("Média de acertos calculadas com sucesso!!")
     print("------------------------------------------------------------------------")
@@ -39,4 +39,4 @@ def calcular_media_acertos(json_path):
     print()
 
 if __name__ == "__main__":
-    calcular_media_acertos("./output/json/parcias_ufsc.json")
+    calcular_media_acertos("./output/json/parcias_ufsc.json","./output/json" )
