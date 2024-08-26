@@ -9,12 +9,12 @@ from ..ufsc.ranking import calcular_ranking
 from ..ufsc.pdfIndividual import gerar_relatorios_individuais
 
 
-def main(dados_brutos_path, ):
-    generate_json_ufsc()
-    calcular_parciais_ufsc()
-    calcular_media_acertos("./output/json/parcias_ufsc.json")
-    calcular_ranking("./output/json/parcias_ufsc.json")
-    gerar_relatorios_individuais()
+def main(dados_brutos_path, main_output_path, gabarito_vale_csv, relatorios_alunos_path, gabarito_vale_convertido):
+    generate_json_ufsc(dados_brutos_path, main_output_path)
+    calcular_parciais_ufsc(main_output_path, gabarito_vale_csv)
+    calcular_media_acertos(f"{main_output_path}/parcias_ufsc.json", main_output_path)
+    calcular_ranking(f"{main_output_path}","/parcias_ufsc.json")
+    gerar_relatorios_individuais(main_output_path, relatorios_alunos_path, gabarito_vale_convertido)
 
 if __name__ == "__main__":
     main()
