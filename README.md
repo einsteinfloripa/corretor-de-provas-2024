@@ -26,6 +26,7 @@ $ git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
 $ pip install -r ./requirements/requirements.txt
 ```
 
+### Executando o script
 
 * Para executar o programa, execute o arquivo main_window.py, e a interface gráfica deve abrir normalmente.
 
