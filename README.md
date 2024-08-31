@@ -29,7 +29,7 @@ $ pip install -r ./requirements/requirements.txt
 
 * Para executar o programa, execute o arquivo main_window.py, e a interface gráfica deve abrir normalmente.
 
-* para gerar um executavel, rode o seguinte comando:
+* para gerar um executável, rode o seguinte comando:
 ```shell
 $ pyinstaller --windowed --icon=assets/icons/einsteinlogo.png --onefile --paths=src main_window.py
 ```
