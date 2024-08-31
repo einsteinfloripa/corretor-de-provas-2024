@@ -12,14 +12,25 @@ para auxiliar os organizadores na qualidade do Ensino
 ## Primeiros passos
 ### Instalação
 
-Clone o projeto com o comando git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
+* Clone o projeto com o comando:
+```shell
+$ git clone git@github.com:einsteinfloripa/corretor-de-provas-2024.git
+``` 
 
-Entre dentro da pasta "corretor-de-provas"
+* Entre dentro da pasta "corretor-de-provas"
 
 ### Dependências
 
 * Instale os pacotes de dependências usando:
 ```shell
 $ pip install -r ./requirements/requirements.txt
+```
+
+
+* Para executar o programa, execute o arquivo main_window.py, e a interface gráfica deve abrir normalmente.
+
+* para gerar um executavel, rode o seguinte comando:
+```shell
+$ pyinstaller --windowed --icon=assets/icons/einsteinlogo.png --onefile --paths=src main_window.py
 ```
 
