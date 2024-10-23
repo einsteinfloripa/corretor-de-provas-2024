@@ -27,7 +27,12 @@ class UfscJanela(QMainWindow):
         botaoGerarResultados.move(290,525)
         botaoGerarResultados.resize(200,65)
         botaoGerarResultados.setStyleSheet(botaoGerarResultadosStyle)
-        botaoGerarResultados.clicked.connect(lambda:main(self.CaminhosDeArquivos["dados_brutos"], self.CaminhosDeArquivos["salvar_arquivos"], self.CaminhosDeArquivos["gabarito_vale_csv"], self.CaminhosDeArquivos["salvar_arquivos_alunos"],self.CaminhosDeArquivos["gabarito_vale_convertido"]))
+        botaoGerarResultados.clicked.connect(
+            lambda:main(self.CaminhosDeArquivos["dados_brutos"],
+                        self.CaminhosDeArquivos["salvar_arquivos"],
+                        self.CaminhosDeArquivos["gabarito_vale_csv"], 
+                        self.CaminhosDeArquivos["salvar_arquivos_alunos"],
+                        self.CaminhosDeArquivos["gabarito_vale_convertido"]))
 
         tituloTopo = QLabel(self)
         tituloTopo.setText("UFSC")
