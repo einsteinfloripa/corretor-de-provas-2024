@@ -52,7 +52,7 @@ class Janela(QMainWindow):
         tituloTopo.setStyleSheet(tituloTopoStyle)
 
         versao = QLabel(self)
-        versao.setText("versão 24.1.0")
+        versao.setText("versão 24.2.1")
         versao.setGeometry(690, 540, 100, 50)  # Ajusta o tamanho e a posição do QLabel
         versao.setStyleSheet(versão_style)
 
