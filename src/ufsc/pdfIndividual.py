@@ -1,12 +1,6 @@
 import pandas as pd
 import json
 from .layoutPDF import create_report
-# from .infos import alunos_infos
-
-
-
-
-
 
 def gerar_relatorios_individuais(main_path, relatorios_alunos_path, gabarito_vale_convertido):
     print("------------------------------------------------------------------------")
@@ -35,43 +29,65 @@ def gerar_relatorios_individuais(main_path, relatorios_alunos_path, gabarito_val
         data['name'] = nome_aluno
         data['cpf'] = cpf_aluno
         data['objective_score'] = row["total_prova"]
-        data['subjects'] = [
-            ["Matemática", str(row["Matemática"]), media_geral["Matemática"]],
-            ["Português/Literatura", str(row["Português/Literatura"]), media_geral["Português/Literatura"]],
-            ["linguagens", str(row["linguagens"]), media_geral["linguagens"]],
-            ["Física", str(row["Física"]), media_geral["Física"]],
-            ["Química", str(row["Química"]), media_geral["Química"]],
-            ["Biologia", str(row["Biologia"]), media_geral["Biologia"]],
-            ["Geografia", str(row["Geografia"]), media_geral["Geografia"]],
-            ["História", str(row["História"]), media_geral["História"]],
-            ["Filosofia/Sociologia", str(row["Filosofia/Sociologia"]), media_geral["Filosofia/Sociologia"]],
-            ["Total",str(row["total_prova"]),media_geral["Media de acertos"]]
-        ]
+        
+        # Inicializando data['subjects'] de forma dinâmica
+        data['subjects'] = []
+
+        # Filtrando colunas que não são disciplinas
+        colunas_excluir = ["CPF", "Nome", "total_prova"]
+
+        for coluna in row.index:
+            if coluna not in colunas_excluir:
+                disciplina = coluna
+                valor_estudante = str(row[coluna])
+                valor_media = media_geral.get(coluna, "N/A")  # Caso não tenha a média no dicionário
+
+                # Adicionando as disciplinas de forma dinâmica
+                data['subjects'].append([disciplina, valor_estudante, valor_media])
+
+        # Adiciona o total de forma separada
+        data['subjects'].append([
+            "Total", 
+            str(row["total_prova"]), 
+            media_geral.get("Media de acertos", "N/A")
+        ])
+
         respostas_aluno = respostas_brutas[cpf_aluno]["respostas_do_aluno"]
+
         for resposta in respostas_aluno:
             resposta_aluno = respostas_aluno[resposta]
             idioma_aluno = respostas_brutas[cpf_aluno]["lingua"]
             disciplina = vale_gabarito[resposta]["Disciplina"]
             gabarito_oficial = vale_gabarito[resposta]["Gabarito"]
+
+            # Tratamento especial para inglês e espanhol
             if disciplina == "Inglês":
-                disciplina = "linguagens" #gambiarra atras de gambiarra
-                if idioma_aluno=="Espanhol": #se a iteração estiver na questão do tema ingles e o idioma_aluno for igual a espanhol
-                    gabarito_oficial = vale_gabarito[resposta]["Questão Espanhol"] #então gabarito_oficial busca pela resposta espanhol
-            #os nomes estão uma merda. A disciplina deveria ser linguagens ou algo do tipo pra fazer mais sentido
+                disciplina = "linguagens"
+                if idioma_aluno == "Espanhol":
+                    gabarito_oficial = vale_gabarito[resposta]["Questão Espanhol"]
+
+            # Verifica se a resposta do aluno está correta
             if resposta_aluno == gabarito_oficial:
                 resposta_corrigida = f"{resposta_aluno}  ✔"
             else:
                 resposta_corrigida = f"{resposta_aluno}  ✖"
+
+            # Adiciona o valor da parcial da questão
             parcial_questao = parciais_ufsc[cpf_aluno]["parcial_aluno"][disciplina][resposta]
 
-            questoes = [resposta,gabarito_oficial, resposta_corrigida, parcial_questao]
+            # Montando a tabela com as questões
+            questoes = [resposta, gabarito_oficial, resposta_corrigida, parcial_questao]
             tabela.append(questoes)
+
+        # Adicionando o idioma e as questões no dicionário data
         data["idioma_aluno"] = idioma_aluno
         data['questions'] = tabela
+
+        # Gerando o PDF com o layout específico
         filepdf = f'{relatorios_alunos_path}/{cpf_aluno}.pdf'
-        create_report(data,filepdf)
+        create_report(data, filepdf)
+
     print("Relatório dos alunos gerados com sucesso!")
     print("------------------------------------------------------------------------")
     print()
     print()
-        
