@@ -18,15 +18,14 @@ def generate_json_ufsc(dados_brutos_path,main_output):
         nome = row["aluno"]
         lingua = row["línguas"]
         proposicoes_respostas[cpf] = {"nome":nome, "lingua":lingua} 
-        proposicoes_respostas[cpf]["respostas_do_aluno"] = {}
-
-        respostas_brutas_por_aluno[cpf] = {"nome":nome, "lingua":lingua}
-        respostas_brutas_por_aluno[cpf]["respostas_do_aluno"] = {}
+        proposicoes_respostas[cpf]["respostas_do_aluno"] = {} #dicionario para o json em Binario
+        
+        respostas_brutas_por_aluno[cpf] = {"nome":nome, "lingua":lingua} 
+        respostas_brutas_por_aluno[cpf]["respostas_do_aluno"] = {} #dicionário com a resposta final do aluno    
 
         for questao in range(1,41): #as questoes vão de 1 a 40
             questao = str(questao)
             resposta = (row[questao])
-            
             resposta = convert_to_int(resposta)
             alternativas_assinaladas = bin(resposta)[2:]
             proposicoes_respostas[cpf]["respostas_do_aluno"][questao] = alternativas_assinaladas
