@@ -6,6 +6,8 @@ __pycache__/
 assets/spreadsheets/*.csv
 assets/json/*.json
 output/json/*.json
+output/json/*.csv
+
 output/alunos_relatorios/*.pdf
 output/pdf/*.pdf
 output/spreadsheets/*.csv
@@ -14,7 +16,7 @@ teste.py
 jsonteste.json
 # C extensionss
 *.so
-
+.vscode/
 # Distribution / packaging
 .Python
 build/
