@@ -35,3 +35,5 @@ $ pip install -r ./requirements/requirements.txt
 $ pyinstaller --windowed --icon=assets/icons/einsteinlogo.png --onefile --paths=src main_window.py
 ```
 
+obs: Para rodar em linux, alguns pacotes adicionais de dependencia devem ser instalados
+
