@@ -1,8 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QFileDialog
 from PyQt5 import QtGui
 from .utiils import configurar_label_com_imagem, botaoGerarResultadosStyle, tituloTopoStyle, SelecionarDadosBrutosUfscStyle, SelecionarCaminhoUfscStyle, SelecionarCaminhoUfscStyle, SelecionarValeUfscGabaritoStyle, SelecionarInformaçõesUfscStyle, conversor_link, SelecionarCaminhoUfscRelatórioAlunosStyle, SelecionarValeUfscGabaritoConvertidoStyle
-from src.alternatives.alternatives import gerar_grafico_distruibuicao
-from src.invokers.ufsc_invokers import main
+from src.invokers.ufsc_invokers import main as main_ufsc
 
 class UfscJanela(QMainWindow):
     def __init__(self):
@@ -28,7 +27,7 @@ class UfscJanela(QMainWindow):
         botaoGerarResultados.resize(200,65)
         botaoGerarResultados.setStyleSheet(botaoGerarResultadosStyle)
         botaoGerarResultados.clicked.connect(
-            lambda:main(self.CaminhosDeArquivos["dados_brutos"],
+            lambda:main_ufsc(self.CaminhosDeArquivos["dados_brutos"],
                         self.CaminhosDeArquivos["salvar_arquivos"],
                         self.CaminhosDeArquivos["gabarito_vale_csv"], 
                         self.CaminhosDeArquivos["salvar_arquivos_alunos"],
