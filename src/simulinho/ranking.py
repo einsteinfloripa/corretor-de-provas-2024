@@ -1,9 +1,7 @@
 import pandas as pd
 import json
-def main():
-    gerar_ranking()
 
-def gerar_ranking():
+def gerar_ranking(planilhabruta, caminhoSalvarArquivos):
     print("Gerando Ranking...")
     media_disciplinas_turma = {
     'total_acertos': 0,
@@ -18,7 +16,6 @@ def gerar_ranking():
     }
     ranking_alunos = {}
 
-    planilhabruta = './assets/spreadsheets/dados_bruto.csv' #variavel de ambiente
     df = pd.read_csv(planilhabruta)
     linhas = df.shape[0]
     colunas = df.shape[1]
@@ -66,13 +63,14 @@ def gerar_ranking():
     df = df[['cpf', 'total_acertos', 'matematica', 'portugues', 'quimica', 'historia', 'geografia', 'fisica', 'biologia', 'filosofia-sociologia']]
 
     # Salvar o DataFrame em um arquivo CSV
-    df.to_csv('./output/spreadsheets/ranking_alunos.xlsx', index=False)
+    # caminhoRanking = caminhoSalvarArquivos + "/ranking_alunos.xlsx"
+    df.to_csv(caminhoSalvarArquivos+'/ranking_alunos.xlsx', index=False)
     
-    with open('./output/json/ranking_alunos.json', 'w') as f:
+    with open(caminhoSalvarArquivos+'/ranking_alunos.json', 'w') as f:
         json.dump(ranking_alunos, f, indent=4, default=str)
     
-    with open('./output/json/media_disciplinas.json', 'w') as f:
+    with open(caminhoSalvarArquivos+'/media_disciplinas.json', 'w') as f:
         json.dump(media_disciplinas_turma, f, indent=4, default=str)
 
 if __name__ == "__main__":
-    main()
+    gerar_ranking()
