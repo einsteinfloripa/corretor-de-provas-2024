@@ -14,6 +14,7 @@ output/spreadsheets/*.csv
 output/spreadsheets/*.xlsx
 teste.py
 jsonteste.json
+resultados_agora
 # C extensionss
 *.so
 .vscode/
@@ -81,7 +82,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-
+soagora
 # PyBuilder
 .pybuilder/
 target/
